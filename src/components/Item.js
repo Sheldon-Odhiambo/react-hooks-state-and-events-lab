@@ -1,15 +1,18 @@
-import React, { useState} from "react";
+import React, { useState } from 'react';
 
 function Item({ name, category }) {
-  function  handleClick() {
-    setClassName(()=> !inCart)
+  const [addToCart, setAddtoCart] = useState(false);
+
+  function handleCart() {
+    setAddtoCart((addToCart) => !addToCart);
   }
-  const [inCart, setClassName] = useState(false)
   return (
-    <li className= {inCart ? "in-cart": ""}>
+    <li className={addToCart ? 'in-cart' : ''}>
       <span>{name}</span>
-      <span className="category">{category}</span>
-      <button onCLick={handleClick} className="add">{inCart ? "Remove From Cart" : "Add To Cart"}</button>
+      <span className='category'>{category}</span>
+      <button className={addToCart ? 'remove' : 'add'} onClick={handleCart}>
+        {addToCart ? 'Remove from ' : 'Add to'} Cart
+      </button>
     </li>
   );
 }
